@@ -23,7 +23,9 @@ async function getmoviedata() {
     return;
   }
 
-  const xdata = await fetch(`http://www.omdbapi.com/?s=${name}&apikey=9b061cb2`);
+  const xdata = await fetch(
+    `http://www.omdbapi.com/?s=${name}&apikey=9b061cb2`
+  );
   let data = await xdata.json();
   let arrdata = data["Search"];
   if (year) {
@@ -33,18 +35,18 @@ async function getmoviedata() {
   }
   arrdata.forEach((element) => {
     movied.insertAdjacentHTML(
-      "afterbegin", 
-        `<div>
-            <img src=${element["Poster"]} alt="NaN"> 
+      "afterbegin",
+      `<div>
+            <img src=${element["Poster"]} alt="NotFound"> 
             <br>
             Title: ${element["Title"]}
             <br> 
-            Year: ${element["Year"]} 
+            Year: ${element["Year"]}
         </div>`
     );
   });
 }
-function resetmoviedata(){
+function resetmoviedata() {
   let movied = document.getElementById("moviedata");
   movied.innerHTML = "";
 }
@@ -53,5 +55,3 @@ search_b.addEventListener("click", getmoviedata);
 
 reset_b = document.getElementById("resetbtn");
 reset_b.addEventListener("click", resetmoviedata);
-
-
